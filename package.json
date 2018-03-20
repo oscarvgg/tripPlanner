@@ -1,0 +1,46 @@
+{
+  "name": "TripPlanner",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "test": "jest --coverage",
+    "start:ios": "react-native run-ios",
+    "tsc": "tsc",
+    "clean": "rimraf artifacts",
+    "build": "npm run clean && npm run tsc --",
+    "lint": "tslint src/**/*.ts"
+  },
+  "dependencies": {
+    "react": "16.3.0-alpha.2",
+    "react-native": "0.54.2",
+    "react-native-maps": "https://github.com/react-community/react-native-maps.git"
+  },
+  "devDependencies": {
+    "@types/jest": "^22.2.0",
+    "@types/react": "^16.0.40",
+    "@types/react-native": "^0.52.18",
+    "babel-jest": "23.0.0-alpha.0",
+    "babel-preset-react-native": "4.0.0",
+    "concurrently": "^3.5.1",
+    "jest": "23.0.0-alpha.0",
+    "react-test-renderer": "16.3.0-alpha.2",
+    "rimraf": "^2.6.2",
+    "tslint": "^5.9.1",
+    "typescript": "^2.7.2"
+  },
+  "jest": {
+    "preset": "react-native",
+    "testRegex": "artifacts/.+\\.(test|spec).js$",
+    "coverageDirectory": "coverage",
+    "coverageReporters": [
+      "text-summary",
+      "html"
+    ],
+    "collectCoverageFrom": [
+      "artifacts/**/*.js",
+      "!artifacts/**/*.spec.js",
+      "!artifacts/**/*.index.js"
+    ]
+  }
+}
