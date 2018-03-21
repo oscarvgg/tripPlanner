@@ -1,0 +1,44 @@
+[
+  {
+    "name": "Place",
+    "position": {
+      "latitude": -66.26953125,
+      "longitude": 10.422988388338242
+    }
+  },
+  {
+    "name": "Place",
+    "position": {
+      "latitude": -73.23486328124999,
+      "longitude": 9.275622176792098
+    }
+  },
+  {
+    "name": "Place",
+    "position": {
+      "latitude": -66.005859375,
+      "longitude": 1.5159363834516861
+    }
+  },
+  {
+    "name": "Place",
+    "position": {
+      "latitude": -60.00732421875,
+      "longitude": 8.254982704877875
+    }
+  },
+  {
+    "name": "Place",
+    "position": {
+      "latitude": -62.77587890625,
+      "longitude": 8.167993177231883
+    }
+  },
+  {
+    "name": "Place",
+    "position": {
+      "latitude": -69.01611328125,
+      "longitude": 7.841615185204699
+    }
+  }
+]
