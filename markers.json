@@ -1,5 +1,6 @@
 [
   {
+    "identifier": "1",
     "name": "Place",
     "position": {
       "latitude": -66.26953125,
@@ -7,6 +8,7 @@
     }
   },
   {
+    "identifier": "2",
     "name": "Place",
     "position": {
       "latitude": -73.23486328124999,
@@ -14,6 +16,7 @@
     }
   },
   {
+    "identifier": "3",
     "name": "Place",
     "position": {
       "latitude": -66.005859375,
@@ -21,6 +24,7 @@
     }
   },
   {
+    "identifier": "4",
     "name": "Place",
     "position": {
       "latitude": -60.00732421875,
@@ -28,6 +32,7 @@
     }
   },
   {
+    "identifier": "5",
     "name": "Place",
     "position": {
       "latitude": -62.77587890625,
@@ -35,6 +40,7 @@
     }
   },
   {
+    "identifier": "6",
     "name": "Place",
     "position": {
       "latitude": -69.01611328125,

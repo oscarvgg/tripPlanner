@@ -4,17 +4,23 @@ import { connect } from 'react-redux';
 import MapView, { Marker } from 'react-native-maps';
 class Map extends Component {
     componentDidUpdate() {
-        console.log('update');
+        this.centerMapInPoints();
+    }
+    componentDidMount() {
+        this.centerMapInPoints();
+    }
+    centerMapInPoints() {
         if (this.props.places.length <= 0) {
             return;
         }
-        this.map.fitToSuppliedMarkers(this.props.places.map(place => {
-            return place.position.latitude.toString();
-        }), true);
+        const identifiers = this.props.places.map(place => {
+            return place.identifier;
+        });
+        this.map.fitToSuppliedMarkers(identifiers, true);
     }
     render() {
         console.log(this.props);
-        return (React.createElement(MapView, { style: styles.map, ref: (ref) => this.map = ref }, this.props.places.map(place => (React.createElement(Marker, { key: place.position.latitude.toString(), coordinate: place.position, title: place.name, description: place.name })))));
+        return (React.createElement(MapView, { style: styles.map, ref: (ref) => this.map = ref }, this.props.places.map(place => (React.createElement(Marker, { key: place.identifier, identifier: place.identifier, coordinate: place.position, title: place.name, description: place.name })))));
     }
 }
 const styles = StyleSheet.create({

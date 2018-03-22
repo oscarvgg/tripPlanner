@@ -18,16 +18,22 @@ class Map extends Component<Props, State> {
   map: MapView
 
   componentDidUpdate() {
-    console.log('update')
+    this.centerMapInPoints()
+  }
+
+  componentDidMount() {
+    this.centerMapInPoints()
+  }
+
+  centerMapInPoints() {
     if (this.props.places.length <= 0) {
       return
     }
-    this.map.fitToSuppliedMarkers(this.props.places.map(place => {
-      return place.position.latitude.toString()
-    }), true)
+    const identifiers = this.props.places.map(place => {
+      return place.identifier
+    })
+    this.map.fitToSuppliedMarkers(identifiers, true)
   }
-
-
 
   render() {
     console.log(this.props)
@@ -37,7 +43,8 @@ class Map extends Component<Props, State> {
       ref={ (ref) => this.map = ref }>
         {this.props.places.map(place => (
           <Marker
-            key={ place.position.latitude.toString() }
+            key={ place.identifier }
+            identifier={ place.identifier }
             coordinate={ place.position }
             title={ place.name }
             description={ place.name }

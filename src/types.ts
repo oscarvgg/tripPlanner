@@ -1,10 +1,11 @@
 
 export interface Location {
-  latitude: number,
+  latitude: number
   longitude: number
 }
 
 export interface Place {
-  name: string,
+  identifier: string
+  name: string
   position: Location
 }
