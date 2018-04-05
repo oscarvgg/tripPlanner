@@ -5,7 +5,6 @@ import { Actions } from 'react-native-router-flux';
 import { firebaseConfig } from '../credentials';
 firebase.initializeApp(firebaseConfig);
 firebase.auth().onAuthStateChanged((user) => {
-    console.log('user = ' + JSON.stringify(user));
     if (user === null) {
         // logged out
         console.log('logged out');

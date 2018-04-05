@@ -17,11 +17,14 @@ export var SessionState;
 })(SessionState || (SessionState = {}));
 export var ActionTypes;
 (function (ActionTypes) {
+    // Auth:
     ActionTypes["emailChanged"] = "email_changed";
     ActionTypes["passwordChanged"] = "password_changed";
     ActionTypes["logInUser"] = "log_in_user";
     ActionTypes["logInUserFail"] = "login_user_fail";
     ActionTypes["loginUserSuccess"] = "login_user_success";
     ActionTypes["logout"] = "logout";
+    // map
+    ActionTypes["placesFetchSucceeded"] = "fetch_points_succeeded";
 })(ActionTypes || (ActionTypes = {}));
 //# sourceMappingURL=types.js.map

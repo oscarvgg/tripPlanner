@@ -2,9 +2,13 @@ import React, { Component } from 'react';
 import { StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import MapView, { Marker } from 'react-native-maps';
+import { createPlace, fetchPlaces } from '../actions/MapActions';
 class Map extends Component {
     componentDidUpdate() {
         this.centerMapInPoints();
+    }
+    componentWillMount() {
+        this.props.fetchPlaces();
     }
     componentDidMount() {
         this.centerMapInPoints();
@@ -14,13 +18,18 @@ class Map extends Component {
             return;
         }
         const identifiers = this.props.places.map(place => {
-            return place.identifier;
+            return place.uid;
         });
         this.map.fitToSuppliedMarkers(identifiers, true);
     }
+    // Actions:
+    onMapPress(event) {
+        console.log('tapped on: ' + JSON.stringify(event.nativeEvent));
+        this.props.createPlace(event.nativeEvent.coordinate);
+    }
     render() {
         console.log(this.props);
-        return (React.createElement(MapView, { style: styles.map, ref: (ref) => this.map = ref }, this.props.places.map(place => (React.createElement(Marker, { key: place.identifier, identifier: place.identifier, coordinate: place.position, title: place.name, description: place.name })))));
+        return (React.createElement(MapView, { style: styles.map, ref: (ref) => this.map = ref, onPress: this.onMapPress.bind(this) }, this.props.places.map(place => (React.createElement(Marker, { key: place.uid, identifier: place.uid, coordinate: place.position, title: place.name, description: place.name })))));
     }
 }
 const styles = StyleSheet.create({
@@ -29,8 +38,10 @@ const styles = StyleSheet.create({
     }
 });
 const mapStateToProps = (state) => {
-    console.log(state.places);
     return { places: state.places };
 };
-export default connect(mapStateToProps)(Map);
+export default connect(mapStateToProps, {
+    createPlace,
+    fetchPlaces
+})(Map);
 //# sourceMappingURL=Map.js.map

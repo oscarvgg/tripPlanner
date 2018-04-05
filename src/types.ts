@@ -21,12 +21,16 @@ export enum SessionState {
 }
 
 export enum ActionTypes {
+  // Auth:
   emailChanged = 'email_changed',
   passwordChanged = 'password_changed',
   logInUser = 'log_in_user',
   logInUserFail = 'login_user_fail',
   loginUserSuccess = 'login_user_success',
-  logout = 'logout'
+  logout = 'logout',
+
+  // map
+  placesFetchSucceeded = 'fetch_points_succeeded'
 }
 
 // Actions:
@@ -59,13 +63,13 @@ export interface AppState {
   auth: Auth
 }
 
-export interface Location {
+export interface Coordinate {
   latitude: number
   longitude: number
 }
 
 export interface Place {
-  identifier: string
-  name: string
-  position: Location
+  uid?: string
+  name?: string
+  position: Coordinate
 }
