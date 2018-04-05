@@ -1,7 +1,7 @@
 import { Place } from '../types'
 import data from '../../markers.json'
 
-const reducer: () => Place = () => {
+const reducer: () => [Place] = () => {
   return data
 }
 

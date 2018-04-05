@@ -1,11 +1,9 @@
 import { combineReducers } from 'redux'
 import PlacesReducer from './PlacesReducer'
-import { Place } from '../types'
-
-export interface AppState {
-  places: Place[]
-}
+import SessionReducer from './SessionReducer'
+import { AppState } from '../types'
 
 export default combineReducers<AppState>({
-  places: PlacesReducer
+  places: PlacesReducer,
+  auth: SessionReducer
 })
