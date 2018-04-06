@@ -1,14 +1,17 @@
 import React, { Component } from 'react'
 import { StyleSheet } from 'react-native'
-import { connect, Dispatch } from 'react-redux'
-import MapView, { Marker } from 'react-native-maps'
+import { connect } from 'react-redux'
+import MapView, { Marker, Callout } from 'react-native-maps'
 import { Place, Coordinate } from '../types'
-import { createPlace, fetchPlaces } from '../actions/MapActions'
+import { createPlace, fetchPlaces, deletePlace } from '../actions/MapActions'
+import { MarkerCallout } from './MarkerCallout'
+import { Button } from './common'
 
 export interface Props {
   places: Place[],
   createPlace: (coordinate: Coordinate) => any
   fetchPlaces: () => any
+  deletePlace: (placeId: string) => any
 }
 
 class Map extends Component<Props> {
@@ -27,6 +30,8 @@ class Map extends Component<Props> {
     this.centerMapInPoints()
   }
 
+  // Logic:
+
   centerMapInPoints() {
     if (this.props.places.length <= 0) {
       return
@@ -37,27 +42,45 @@ class Map extends Component<Props> {
     this.map.fitToSuppliedMarkers(identifiers, true)
   }
 
-  // Actions:
+  // Events:
+
   onMapPress(event) {
     console.log('tapped on: ' + JSON.stringify(event.nativeEvent))
     this.props.createPlace(event.nativeEvent.coordinate)
+  }
+
+  onMarkerPress(event) {
+    console.log('tapped on marker: ' + JSON.stringify(event.nativeEvent))
+  }
+
+  onMarkerDeleteButtonPress(idPlace: string) {
+    this.props.deletePlace(idPlace)
   }
 
   render() {
     console.log(this.props)
     return (
       <MapView
-      style={styles.map}
-      ref={ (ref) => this.map = ref }
-      onPress={this.onMapPress.bind(this)}>
+        style={styles.map}
+        ref={(ref) => this.map = ref}
+        onPress={this.onMapPress.bind(this)}
+        onMarkerPress={this.onMarkerPress.bind(this)}>
         {this.props.places.map(place => (
           <Marker
-            key={ place.uid }
-            identifier={ place.uid }
-            coordinate={ place.position }
-            title={ place.name }
-            description={ place.name }
-          />
+            key={place.uid}
+            identifier={place.uid}
+            coordinate={place.position}
+            title={place.name}
+            description={place.name}
+            onPress={this.onMarkerPress.bind(this)}>
+            <Callout>
+              <MarkerCallout>
+                <Button onPress={this.onMarkerDeleteButtonPress.bind(this, place.uid)}>
+                  Delete
+                </Button>
+              </MarkerCallout>
+            </Callout>
+          </Marker>
         ))}
       </MapView>
     )
@@ -76,5 +99,6 @@ const mapStateToProps = (state) => {
 
 export default connect(mapStateToProps, {
   createPlace,
-  fetchPlaces
+  fetchPlaces,
+  deletePlace
 })(Map)

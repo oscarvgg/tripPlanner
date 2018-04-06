@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import { AppState, ActionTypes, TypedAction, Place, initialState } from '../types'
+import { ActionTypes, TypedAction, Place, initialState } from '../types'
 
 const placesReducer: (state: Place[], action: TypedAction<any>) => Place[] = (state = initialState.places, action) => {
 
